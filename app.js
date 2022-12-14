@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const mongoose = require('mongoose');
 
+
 var app = express();
 
 // view engine setup
@@ -22,7 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //mongoose
-mongoose.connect('mongodb://localhost/shoping-card',function(error){
+mongoose.set('strictQuery', true); 
+mongoose.connect('mongodb://127.0.0.1/shoping-card',function(error){
   if(error){
     console.log(error);
   }
