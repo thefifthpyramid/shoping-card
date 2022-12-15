@@ -8,6 +8,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const mongoose = require('mongoose');
+// const session = require('express-session');
 
 
 var app = express();
@@ -20,6 +21,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(session({
+//   secret: 'shoping-card_?@!',
+//   sa
+// }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //mongoose
