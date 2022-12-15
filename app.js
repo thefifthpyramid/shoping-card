@@ -27,8 +27,9 @@ mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://127.0.0.1/shoping-card',function(error){
   if(error){
     console.log(error);
+  }else{
+    console.log('Conected to DB ....');
   }
-  console.log('Conected to DB ....')
 });
 
 app.use('/', indexRouter);

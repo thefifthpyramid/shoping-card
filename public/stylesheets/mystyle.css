@@ -1,0 +1,14 @@
+form .btn{
+    border-radius: 0;
+    padding: 6px 37px;
+
+}.toper-links a,.toper-center{
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}.toper-links a:hover{
+    color: rgb(232, 232, 232);
+
+}.toper-center{
+    padding-top: 8px;
+}
