@@ -12,6 +12,7 @@
     "csurf": "^1.11.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.3",
     "express-validator": "^6.14.2",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
