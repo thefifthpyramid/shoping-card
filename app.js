@@ -8,24 +8,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const mongoose = require('mongoose');
-// const session = require('express-session');
+const session = require('express-session');//session
+const flash = require('connect-flash');//connect-flash
+const passport = require('passport'); //passport
 
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-// app.use(session({
-//   secret: 'shoping-card_?@!',
-//   sa
-// }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 //mongoose
 mongoose.set('strictQuery', true); 
@@ -36,6 +24,28 @@ mongoose.connect('mongodb://127.0.0.1/shoping-card',function(error){
     console.log('Conected to DB ....');
   }
 });
+
+require('./config/passport');
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({
+  secret: 'shoping-card_?@3#',
+  resave: true,
+  saveUninitialized: true
+}));//session
+app.use(flash());//flash
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
