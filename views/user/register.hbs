@@ -19,7 +19,10 @@
           <div class="col-md-8 order-md-center d-flex">
             <!-- Start Form -->
             <form action="register" method="post" class="bg-white p-5 contact-form">
-
+              {{#each messageError}}
+                <div class="alert alert-danger">{{this}}</div>
+              {{/each}}
+              <input type="hidden" name="_csrf" value="{{csrf}}">
               <!-- Start form-group -->
               <div class="form-group">
                 <input type="text" name="name" class="form-control" placeholder="Your Name">
