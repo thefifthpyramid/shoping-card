@@ -18,14 +18,14 @@
           <div class="col-md-2 d-flex"></div>
           <div class="col-md-8 order-md-center d-flex">
             <!-- Start Form -->
-            <form action="sign" method="post" class="bg-white p-5 contact-form">
-
+            <form action="login" method="post" class="bg-white p-5 contact-form">
+              {{#each messageError}}
+                <div class="alert alert-danger">{{this}}</div>
+              {{/each}}
               <!-- Start form-group -->
-              <div class="form-group">
-                <input type="text" name="name" class="form-control" placeholder="Your Name">
-              </div>
+              <input type="hidden" name="_csrf" value="{{csrf}}">
               <!-- End form-group -->
-
+              
               <!-- Start form-group -->
               <div class="form-group">
                 <input type="email" name="email" class="form-control" placeholder="Your Email">
@@ -34,13 +34,13 @@
 
               <!-- Start form-group -->
               <div class="form-group">
-                <input type="password" name="pass" class="form-control" placeholder="Subject">
+                <input type="password" name="password" class="form-control" placeholder="Subject">
               </div>
               <!-- End form-group -->
 
               <!-- Start form-group -->
               <div class="form-group">
-                <input type="submit" value="Sign Up" class="btn btn-primary">
+                <input type="submit" value="login" class="btn btn-primary">
               </div>
               <!-- End form-group -->
             </form>
