@@ -5,6 +5,9 @@ const {check,validationResult} = require('express-validator');//express validato
 
 const User = require('../modules/user');//user module
 const passport = require('passport');
+const csrf = require('csurf');
+
+router.use(csrf());
 
 
 /* ************************************************************
@@ -19,7 +22,8 @@ router.get('/', function(req, res, next) {
 * ************************************************************/
 router.get('/register',isNotLogin, function(req, res, next) {
   var messageError = req.flash('error');
-  res.render('user/register',{messageError : messageError});
+  var totalProducts = 0;
+  res.render('user/register',{messageError : messageError,csrf: req.csrfToken(),totalProducts : totalProducts});
 });
 
 /* ************************************************************
@@ -88,13 +92,19 @@ router.post('/register',[
 * ************************************************************/
 router.get('/login',isNotLogin, function(req, res, next) {
   var messageError = req.flash('loginError');
-  res.render('user/login',{messageError :messageError});
+  var totalProducts = 0;
+  res.render('user/login',{messageError :messageError,csrf: req.csrfToken(),totalProducts : totalProducts});
 });
 /* ************************************************************
 * Profile page.   *******************************************
 * ************************************************************/
 router.get('/profile',isLogin, function(req, res, next) {
-  res.render('user/profile');
+  if(req.user.cart){
+    totalProducts = req.user.cart.totalQuantity;
+  }else{
+    totalProducts = 0;
+  }
+  res.render('user/profile',{totalProducts : totalProducts});
 });
 
 /* ************************************************************
