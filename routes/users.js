@@ -104,7 +104,7 @@ router.get('/profile',isLogin, function(req, res, next) {
   }else{
     totalProducts = 0;
   }
-  res.render('user/profile',{totalProducts : totalProducts});
+  res.render('user/profile',{totalProducts : totalProducts, checkUser : req.isAuthenticated()});
 });
 
 /* ************************************************************
@@ -140,8 +140,10 @@ router.post('/login',[
 * LogOut.   *******************************************
 * ************************************************************/
 router.get('/logout',isLogin, function(req, res, next) {
-  req.logOut();
-  res.redirect('/');
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
 });
 
 //if user isAuthenticated
