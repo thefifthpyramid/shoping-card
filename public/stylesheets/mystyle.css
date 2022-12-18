@@ -12,3 +12,141 @@ form .btn{
 }.toper-center{
     padding-top: 8px;
 }
+
+
+/*Portfilo page*/
+.profile .card-body{
+    transition: all .3s ease-in-out;
+}.profile .card{
+    background-color: #ffffff;
+    /* overflow: hidden; */
+} .profile .card-header{
+    text-align: left;
+    padding: 10px 0;
+
+}.profile .position-right {
+    right: 0;
+    top: 7px;
+}.profile .card-header h4{
+     font-size: 16px;
+     color: #726f6f;
+     margin-bottom: 17px;
+}.profile .card-header h4:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 42px;
+    border-bottom: 1px solid #9d9d9d;
+    width: 129px;
+}
+.profile .card-body:hover{
+    background-color: rgba(٢٤١, ٢٤١, ٢٤١, 0.93);
+}.profile .card-body .table tbody tr td{
+    padding: 10px;
+}.profile .card-body .table.text-left td{
+    text-align: left;
+   
+}.profile .card-body .table{
+    color: #777;
+}
+.profile .card-body:hover img{
+    opacity: 1;
+    transform: rotate(360deg);
+    transition: all .5s ease-in-out;
+}.profile .form-group{
+    margin: 25px 0;
+    position: relative;
+}.profile .input-group-text {
+      padding: 9px 12px;
+}.profile .form-control[type=file]:not(:disabled):not([readonly]) {
+     cursor: pointer;
+}.profile .form-control[type=file] {
+      overflow: hidden;
+}.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+input[type="file"]#file-upload {
+   display: none;
+}
+.custom-file-upload {
+   border: 1px solid #ccc;
+   display: inline-block;
+   padding: 6px 12px;
+   cursor: pointer;
+   width: 100%;
+}
+.user-avatar{
+   margin-top:20px;
+   opacity: .8;
+   width: 150px;
+   height: 150px;
+}
+.text-c-yellow{
+   color: #ffb64d;
+}.text-default {
+    color: #d6d6d6;
+}.label {
+    border-radius: 4px;
+    font-size: 75%;
+    padding: 4px 7px;
+    margin-right: 5px;
+    font-weight: 400;
+    color: #fff;
+}.label-danger {
+    background: #ff5370;
+}.position-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+}.card .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 12px 0px;
+    position: relative;
+    text-align: left;
+    margin-bottom: 20px;
+}.btn-main, .sweet-alert button.confirm, .wizard>.actions a {
+     background-color: #82ae46;
+     border-color: #618c26;
+     color: #fff;
+     cursor: pointer;
+     -webkit-transition: all ease-in .3s;
+     transition: all ease-in .3s;
+     border-radius: 3px;
+     padding: 3px 30px;
+     font-weight: bold;
+     text-transform: capitalize;
+}.btn-main:hover, .sweet-alert button.confirm:hover, .wizard>.actions a:hover {
+  background-color: #4b6a21;
+  border-color: #82ae46;
+}.text-primary {
+    color: #ffffff !important;
+}.btn-outline-main {
+    color: #4b6a21;
+    border-color: #618c26;
+}.btn-outline-main:hover{
+  color: #FFF;
+  background-color: #4b6a21;
+  border-color: #618c26;
+}.btn.btn-main:hover {
+    color: #fff;
+}
+.list-group-item {
+  border: 5px solid rgba(0, 0, 0, 0.125);
+  margin: 0px;
+}
+/*End Profile page*/
+.product .img-prod{
+    height: 199px;
+}
+
+/* cart-table */
+.cart-table tbody tr td{
+    padding: 0px 10px;
+}.ftco-cart button, .ftco-cart .form-control{
+    top: 8px;
+}.table-hover>tbody>tr:hover>* {
+    --bs-table-accent-bg: rgb(151 203 138 / 8%);
+    color: var(--bs-table-hover-color);
+}

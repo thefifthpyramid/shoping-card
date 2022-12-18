@@ -439,25 +439,6 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto; }
-  @media (min-width: 576px) {
-    .container {
-      max-width: 540px; } }
-  @media (min-width: 768px) {
-    .container {
-      max-width: 720px; } }
-  @media (min-width: 992px) {
-    .container {
-      max-width: 960px; } }
-  @media (min-width: 1200px) {
-    .container {
-      max-width: 1140px; } }
-
 .container-fluid {
   width: 100%;
   padding-right: 15px;
@@ -1327,7 +1308,8 @@ pre {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent; }
+  background-color: transparent;
+  }
   .table th,
   .table td {
     padding: 0.75rem;
@@ -1364,7 +1346,8 @@ pre {
   background-color: rgba(0, 0, 0, 0.05); }
 
 .table-hover tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.075); }
+  /* background-color: #ffffff; */
+  }
 
 .table-primary,
 .table-primary > th,
@@ -4396,7 +4379,8 @@ input[type="button"].btn-block {
   padding: 0.75rem 1.25rem;
   margin-bottom: -1px;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125); }
+  border: 1px solid rgba(0, 0, 0, 0.125); 
+}
   .list-group-item:first-child {
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem; }
@@ -4406,7 +4390,8 @@ input[type="button"].btn-block {
     border-bottom-left-radius: 0.25rem; }
   .list-group-item:hover, .list-group-item:focus {
     z-index: 1;
-    text-decoration: none; }
+    text-decoration: none;
+    }
   .list-group-item.disabled, .list-group-item:disabled {
     color: #6c757d;
     pointer-events: none;
@@ -5302,7 +5287,8 @@ button.bg-dark:focus {
   background-color: transparent !important; }
 
 .border {
-  border: 1px solid #dee2e6 !important; }
+  border: 1px solid #ededed !important;
+}
 
 .border-top {
   border-top: 1px solid #dee2e6 !important; }
@@ -8665,7 +8651,9 @@ h1, h2, h3, h4, h5,
   .product .img-prod {
     position: relative;
     display: block;
-    overflow: hidden; }
+    overflow: hidden;
+    height: 199px;
+    }
     .product .img-prod .overlay {
       position: absolute;
       top: 0;
@@ -8880,12 +8868,14 @@ h1, h2, h3, h4, h5,
   padding: 16px 20px; }
 
 .ftco-cart button, .ftco-cart .form-control {
-  height: 54px !important;
+  height: 39px !important;
   text-align: center;
   bordeR: 1px solid rgba(0, 0, 0, 0.05) !important;
   color: #000000 !important;
   padding: 0;
-  font-size: 14px; }
+  top: 8px;
+  font-size: 14px;
+  }
 
 .ftco-cart .form-group {
   position: relative; }
@@ -8918,26 +8908,34 @@ h1, h2, h3, h4, h5,
   color: #000000; }
 
 .cart-list {
-  overflow-x: scroll; }
+  overflow-x: scroll;
+  /* overflow: hidden; */
+  }
 
 .table {
-  min-width: 1000px !important;
-  width: 100%;
-  text-align: center; }
+  /* min-width: 1000px !important; */
+  /* width: 100%; */
+  text-align: center;
+  /* margin: 28px; */
+  overflow: hidden;
+  }
   .table th {
     font-weight: 500; }
   .table .thead-primary {
-    background: #82ae46; }
+    background: #82ae46;
+    width: 100%;
+    }
     .table .thead-primary tr th {
       padding: 20px 10px;
-      color: #fff !important;
-      border: 1px solid transparent !important; }
+      color: #fff;
+      border: 1px solid transparent; }
   .table tbody tr td {
-    text-align: center !important;
+    text-align: center;
     vertical-align: middle;
-    padding: 40px 10px;
-    border: 1px solid transparent !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important; }
+    padding: 0px 10px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
     .table tbody tr td.product-remove a {
       bordeR: 1px solid rgba(0, 0, 0, 0.1);
       padding: 4px 10px;
