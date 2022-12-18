@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row no-gutters slider-text align-items-center justify-content-center">
 			<div class="col-md-9 ftco-animate text-center">
-				<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
+				<p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Cart</span></p>
 				<h1 class="mb-0 bread">My Cart</h1>
 			</div>
 		</div>
@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="col-md-12 ftco-animate">
 				<div class="cart-list">
-					{{cartData}}
+					
 					<table class="table cart-table table-hover">
 						<thead class="thead-primary">
 							<tr class="text-center">
@@ -43,11 +43,10 @@
 
 								<td class="price">${{val.price}}</td>
 
-								<td class="quantity">
-									<div class="input-group mb-3">
-										<input type="text" name="quantity" class="quantity form-control input-number"
-											value="{{val.quantity}}" min="1" max="100">
-									</div>
+								<td class="quantity text-center">
+									<a href="#" class="mr-4"><i class="fa fa-minus-square"></i></a>
+									{{val.quantity}}
+									<a href="#" class="ml-4"><i class="fa fa-plus-square"></i></a>
 								</td>
 								<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 							</tr><!-- END TR-->
