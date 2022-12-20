@@ -146,6 +146,10 @@ router.get('/logout',isLogin, function(req, res, next) {
   });
 });
 
+
+
+
+
 //if user isAuthenticated
 function isLogin(req,res,next){
   if(! req.isAuthenticated()){
@@ -155,6 +159,9 @@ function isLogin(req,res,next){
     next();
   }
 }
+
+
+
 //if user is not Authenticated
 function isNotLogin(req,res,next){
   if(req.isAuthenticated()){
