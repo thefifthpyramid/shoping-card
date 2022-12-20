@@ -19,12 +19,23 @@ router.get('/home', function(req, res, next) {
   }
   res.render('index',{totalProducts:totalProducts});
 });
+
+
 router.get('/', function(req, res, next) {
   var totalProducts = 0;
   if(req.isAuthenticated()){
-    totalProducts = req.user.cart.totalQuantity;
+    const cartId = req.user._id;
+    Cart.findById(cartId,(error,cart)=>{
+      if(error){
+        console.log(error);
+      }else{
+        if(cart){
+          totalProducts = req.user.cart.totalQuantity;
+        }
+      }
+      });
+   
   }
-
   Product.find({},function(error,doc){
     if(error){
       console.log(error);
@@ -119,7 +130,7 @@ router.get('/AddToCard/:id/:price/:productName',isLogin, function(req, res, next
           cart.totalQuantity = cart.totalQuantity + 1;
           cart.totalPrice = cart.totalPrice + newProductPrice;
           cart.selectedProduct.push(newProduct);
-          Cart.updateOne({_id:cartId},{$set : cart},(error,doc)=>{
+          Cart.updateOne({_id : cartId},{$set : cart},(error,doc)=>{
             if(error){
               console.log(error);
             }else{
@@ -136,7 +147,7 @@ router.get('/AddToCard/:id/:price/:productName',isLogin, function(req, res, next
 });
 
 /* ************************************************************
-* Cart page.   *******************************************
+* shopping-cart page.   ***************************************
 * ************************************************************/
 router.get('/cart',isLogin, function(req, res, next) {
   if(!req.user.cart){
@@ -150,8 +161,101 @@ router.get('/cart',isLogin, function(req, res, next) {
 
 
 
+/* ************************************************************
+* increaseProduct in the shopping-cart .   ********************
+* ************************************************************/
+router.get('/increaseProduct/:index',isLogin, function(req, res, next) {
+  const index = req.params.index;
+  const userCart = req.user.cart;
+  const productPrice = userCart.selectedProduct[index].price / userCart.selectedProduct[index].quantity
+
+  userCart.selectedProduct[index].quantity = userCart.selectedProduct[index].quantity + 1;
+  userCart.selectedProduct[index].price = userCart.selectedProduct[index].price + productPrice;
+  userCart.totalQuantity = userCart.totalQuantity + 1;
+  userCart.totalPrice = userCart.totalPrice + productPrice;
+  Cart.updateOne({_id: userCart._id},{$set:userCart},(error,doc)=>{
+    if(error){
+      console.log(error);
+    }else{
+      console.log(doc);
+      res.redirect('/cart');
+    }
+  });
+});
 
 
+/* ************************************************************
+* decreaseProduct in the shopping-cart.   *********************
+* ************************************************************/
+router.get('/decreaseProduct/:index',isLogin, function(req, res, next) {
+  const index = req.params.index;
+  const userCart = req.user.cart;
+  const productPrice = userCart.selectedProduct[index].price / userCart.selectedProduct[index].quantity
+
+  userCart.selectedProduct[index].quantity = userCart.selectedProduct[index].quantity - 1;
+  userCart.selectedProduct[index].price = userCart.selectedProduct[index].price - productPrice;
+  userCart.totalQuantity = userCart.totalQuantity - 1;
+  userCart.totalPrice = userCart.totalPrice - productPrice;
+  Cart.updateOne({_id: userCart._id},{$set:userCart},(error,doc)=>{
+    if(error){
+      console.log(error);
+    }else{
+      console.log(doc);
+      res.redirect('/cart');
+    }
+  });
+});
+
+
+/* ************************************************************
+* deleteProduct from shopping-cart .   ************************
+* ************************************************************/
+router.get('/deleteProduct/:index',isLogin, function(req, res, next) {
+  const index = req.params.index;
+  const userCart = req.user.cart;
+
+  if(userCart.selectedProduct.length <=1){
+    Cart.deleteOne({_id:userCart._id},(error,doc)=>{
+      if(error){
+        console.log(error)
+      }else{
+        res.redirect('/');
+      }
+    });
+  }else{
+    userCart.totalPrice = userCart.totalPrice - userCart.selectedProduct[index].price;
+    userCart.totalQuantity = userCart.totalQuantity - userCart.selectedProduct[index].quantity;
+
+    userCart.selectedProduct.splice(index,1);
+
+    Cart.updateOne({_id: userCart._id},{$set : userCart},(error,doc)=>{
+      if(error){
+        console.log(error);
+      }
+    res.redirect('/cart');
+    });
+  }
+});
+
+
+/* ************************************************************
+* checkout page .   *******************************************
+* ************************************************************/
+router.get('/checkout',isLogin, function(req, res, next) {
+  var totalProducts = req.user.cart.totalQuantity;
+  const cartId = req.user._id;
+    Cart.findById(cartId,(error,cart)=>{
+      if(error){
+        console.log(error);
+      }else if(!cart){
+        res.redirect('/users/login');
+      }else{
+        res.render('user/checkout',{totalProducts:totalProducts});
+      }
+      
+    });
+  
+});
 
 
 
