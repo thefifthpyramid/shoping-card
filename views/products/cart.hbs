@@ -12,7 +12,26 @@
 <section class="ftco-section ftco-cart">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12 ftco-animate">
+			<div class="col-md-3 col-lg-3 cart-wrap ftco-animate">
+    				<div class="cart-total mb-3">
+    					<h3>Cart Totals</h3>
+    					<p class="d-flex">
+    						<span>Delivery</span>
+    						<span>$0.00</span>
+    					</p>
+    					<p class="d-flex">
+    						<span>Discount</span>
+    						<span>$0.00</span>
+    					</p>
+    					<hr>
+    					<p class="d-flex total-price">
+    						<span>Total</span>
+    						<span>$ {{cartData.totalPrice}}</span>
+    					</p>
+    				</div>
+    				<p><a href="/checkout" class="btn btn-primary py-3 px-4">Checkout</a></p>
+    			</div>
+			<div class="col-md-9 ftco-animate">
 				<div class="cart-list">
 					
 					<table class="table cart-table table-hover">
@@ -27,30 +46,42 @@
 							</tr>
 						</thead>
 						<tbody>
-							{{#each cartData.selectedProduct as | val index |}}
-							
-							<!-- Start TR-->
+							{{#if cartData.selectedProduct}}
+								{{#each cartData.selectedProduct as | val index |}}
+								
+								<!-- Start TR-->
+								<tr class="text-center">
+									<td class="product-remove">{{index}}</td>
+
+									<td class="image-prod">
+										<div class="img" style="background-image:url(images/product-3.jpg);"></div>
+									</td>
+
+									<td class="product-name">
+										<h3>{{val.name}}</h3>
+									</td>
+
+									<td class="price">${{val.price}}</td>
+
+									<td class="quantity text-center">
+										<a href="/decreaseProduct/{{index}}" class="mr-4"><i class="fa fa-minus-square"></i></a>
+										{{val.quantity}}
+										<a href="/increaseProduct/{{index}}" class="ml-4"><i class="fa fa-plus-square"></i></a>
+									</td>
+									<td class="product-remove">
+										<a href="/deleteProduct/{{index}}" class="btn-danger">
+											<i class="fa fa-trash"></i>
+										</a>
+									</td>
+								</tr><!-- END TR-->
+								{{/each}}
+							{{else}}
 							<tr class="text-center">
-								<td class="product-remove">{{index}}</td>
-
-								<td class="image-prod">
-									<div class="img" style="background-image:url(images/product-3.jpg);"></div>
+								<td colspan="6" class="p-4 color-red">
+									<b>there is no data</b> <a href="/"> Go To Shopping</a>
 								</td>
-
-								<td class="product-name">
-									<h3>{{val.name}}</h3>
-								</td>
-
-								<td class="price">${{val.price}}</td>
-
-								<td class="quantity text-center">
-									<a href="#" class="mr-4"><i class="fa fa-minus-square"></i></a>
-									{{val.quantity}}
-									<a href="#" class="ml-4"><i class="fa fa-plus-square"></i></a>
-								</td>
-								<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-							</tr><!-- END TR-->
-							{{/each}}
+							</tr>
+							{{/if}}
 						</tbody>
 						
 						<tfoot class="thead-primary">
